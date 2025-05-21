@@ -1,0 +1,61 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "po_no": "PO/2025/05/001",
+      "wo_supplier_id": 1001,
+      "work_order": {
+        "wo_id": 101,
+        "wo_no": "WO/2025/001"
+      },
+      "supplier": {
+        "supplier_id": 501,
+        "supplier_name": "Warung Padang Jaya"
+      },
+      "tanggal": "2025-05-19",
+      "volume_liter": 118.5,
+      "price_per_liter": 5000,
+      "total_amount": 592500,
+      "status": "Draft",
+      "catatan": "Kurang 1.5L dari estimasi"
+    },
+    {
+      "id": 2,
+      "po_no": "PO/2025/05/002",
+      "wo_supplier_id": 1002,
+      "work_order": {
+        "wo_id": 101,
+        "wo_no": "WO/2025/001"
+      },
+      "supplier": {
+        "supplier_id": 502,
+        "supplier_name": "Rumah Makan Sederhana"
+      },
+      "tanggal": "2025-05-19",
+      "volume_liter": 90.0,
+      "price_per_liter": 4800,
+      "total_amount": 432000,
+      "status": "Approved",
+      "catatan": "Sesuai estimasi"
+    },
+    {
+      "id": 3,
+      "po_no": "PO/2025/05/003",
+      "wo_supplier_id": 1003,
+      "work_order": {
+        "wo_id": 102,
+        "wo_no": "WO/2025/002"
+      },
+      "supplier": {
+        "supplier_id": 503,
+        "supplier_name": "Pabrik Gorengan ABC"
+      },
+      "tanggal": "2025-05-19",
+      "volume_liter": 160.0,
+      "price_per_liter": 5200,
+      "total_amount": 832000,
+      "status": "Received",
+      "catatan": "Lebih 10L dari estimasi"
+    }
+  ]
+}

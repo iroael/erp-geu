@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "qc_code": "QC-20250520-0001",
+      "delivery_order_id": 1,
+      "delivery_order": {
+        "do_no": "DO/2025/05/0201",
+        "tanggal_kirim": "2025-05-20",
+        "gudang_tujuan_id": 3
+      },
+      "gudang_id": 3,
+      "qc_by": 21,
+      "qc_date": "2025-05-20",
+      "status_qc": "Partial",
+      "note": "Beberapa parameter belum memenuhi batas maksimal"
+    },
+    {
+      "id": "2",
+      "qc_code": "QC-20250520-0002",
+      "delivery_order_id": 1,
+      "delivery_order": {
+        "do_no": "DO/2025/05/0201",
+        "tanggal_kirim": "2025-05-20",
+        "gudang_tujuan_id": 3
+      },
+      "gudang_id": 3,
+      "qc_by": 18,
+      "qc_date": "2025-05-20",
+      "status_qc": "Completed",
+      "note": "QC berjalan lancar tanpa temuan"
+    }
+  ]
+}

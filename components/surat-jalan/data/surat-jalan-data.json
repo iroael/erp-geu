@@ -1,0 +1,194 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "do_no": "DO/2025/05/0201",
+      "tanggal_kirim": "2025-05-20",
+      "driver": {
+        "id": 12,
+        "name": "Andi Saputra",
+        "phone": "081234567890",
+        "license_number": "S1234567AB"
+      },
+      "armada": {
+        "id": 5,
+        "type": "Truck",
+        "plate_number": "B 1234 CD",
+        "capacity": 5000
+      },
+      "gudang_tujuan_id": 3,
+      "status": "Draft",
+      "catatan": "Pengiriman sesuai jadwal, kurangi volume jika kurang",
+      "created_at": "2025-05-19T08:30:00Z",
+      "updated_at": "2025-05-19T08:30:00Z",
+      "po_id": [
+        {
+          "id": 101,
+          "po_no": "PO/2025/05/001",
+          "supplier_id": 501,
+          "supplier_name": "Warung Padang Jaya",
+          "tanggal_po": "2025-05-15",
+          "volume": 120.0,
+          "price_per_liter": 5000,
+          "status": "Approved"
+        },
+        {
+          "id": 102,
+          "po_no": "PO/2025/05/002",
+          "supplier_id": 502,
+          "supplier_name": "Rumah Makan Sederhana",
+          "tanggal_po": "2025-05-16",
+          "volume": 100.0,
+          "price_per_liter": 4800,
+          "status": "Approved"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "do_no": "DO/2025/05/0202",
+      "tanggal_kirim": "2025-05-21",
+      "driver": {
+        "id": 13,
+        "name": "Budi Santoso",
+        "phone": "081298765432",
+        "license_number": "S9876543CD"
+      },
+      "armada": {
+        "id": 6,
+        "type": "Van",
+        "plate_number": "D 5678 EF",
+        "capacity": 3000
+      },
+      "gudang_tujuan_id": 2,
+      "status": "Submitted",
+      "catatan": "Pengiriman segera diproses",
+      "created_at": "2025-05-20T09:00:00Z",
+      "updated_at": "2025-05-20T09:00:00Z",
+      "po_id": [
+        {
+          "id": 103,
+          "po_no": "PO/2025/05/003",
+          "supplier_id": 503,
+          "supplier_name": "Pabrik Gorengan ABC",
+          "tanggal_po": "2025-05-17",
+          "volume": 150.0,
+          "price_per_liter": 5200,
+          "status": "Approved"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "do_no": "DO/2025/05/0203",
+      "tanggal_kirim": "2025-05-22",
+      "driver": {
+        "id": 14,
+        "name": "Citra Dewi",
+        "phone": "081234567891",
+        "license_number": "S1234567CD"
+      },
+      "armada": {
+        "id": 7,
+        "type": "Truck",
+        "plate_number": "F 9012 GH",
+        "capacity": 6000
+      },
+      "gudang_tujuan_id": 4,
+      "status": "Approved",
+      "catatan": "Pengiriman tepat waktu",
+      "created_at": "2025-05-21T07:30:00Z",
+      "updated_at": "2025-05-21T07:30:00Z",
+      "po_id": [
+        {
+          "id": 104,
+          "po_no": "PO/2025/05/004",
+          "supplier_id": 504,
+          "supplier_name": "Toko Minyak Segar",
+          "tanggal_po": "2025-05-18",
+          "volume": 130.0,
+          "price_per_liter": 5100,
+          "status": "Pending"
+        },
+        {
+          "id": 105,
+          "po_no": "PO/2025/05/005",
+          "supplier_id": 505,
+          "supplier_name": "Warung Sederhana",
+          "tanggal_po": "2025-05-19",
+          "volume": 110.0,
+          "price_per_liter": 4900,
+          "status": "Approved"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "do_no": "DO/2025/05/0204",
+      "tanggal_kirim": "2025-05-23",
+      "driver": {
+        "id": 15,
+        "name": "Dedi Kurniawan",
+        "phone": "081212345678",
+        "license_number": "S7654321EF"
+      },
+      "armada": {
+        "id": 8,
+        "type": "Van",
+        "plate_number": "G 3456 IJ",
+        "capacity": 3500
+      },
+      "gudang_tujuan_id": 1,
+      "status": "Rejected",
+      "catatan": "Kendala kendaraan, penjadwalan ulang",
+      "created_at": "2025-05-22T10:00:00Z",
+      "updated_at": "2025-05-22T10:00:00Z",
+      "po_id": [
+        {
+          "id": 106,
+          "po_no": "PO/2025/05/006",
+          "supplier_id": 506,
+          "supplier_name": "UD. Jelantah Bersih",
+          "tanggal_po": "2025-05-20",
+          "volume": 140.0,
+          "price_per_liter": 5300,
+          "status": "Approved"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "do_no": "DO/2025/05/0205",
+      "tanggal_kirim": "2025-05-24",
+      "driver": {
+        "id": 12,
+        "name": "Andi Saputra",
+        "phone": "081234567890",
+        "license_number": "S1234567AB"
+      },
+      "armada": {
+        "id": 5,
+        "type": "Truck",
+        "plate_number": "B 1234 CD",
+        "capacity": 5000
+      },
+      "gudang_tujuan_id": 3,
+      "status": "Delivered",
+      "catatan": "Pengiriman sukses",
+      "created_at": "2025-05-23T14:00:00Z",
+      "updated_at": "2025-05-24T16:00:00Z",
+      "po_id": [
+        {
+          "id": 107,
+          "po_no": "PO/2025/05/007",
+          "supplier_id": 507,
+          "supplier_name": "Rumah Makan Padang",
+          "tanggal_po": "2025-05-21",
+          "volume": 125.0,
+          "price_per_liter": 5000,
+          "status": "Approved"
+        }
+      ]
+    }
+  ]
+}

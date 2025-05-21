@@ -15,19 +15,9 @@ const teams: {
   plan: string
 }[] = [
   {
-    name: 'Acme Inc',
+    name: 'GEU ERP',
     logo: 'i-lucide-gallery-vertical-end',
     plan: 'Enterprise',
-  },
-  {
-    name: 'Acme Corp.',
-    logo: 'i-lucide-audio-waveform',
-    plan: 'Startup',
-  },
-  {
-    name: 'Evil Corp.',
-    logo: 'i-lucide-command',
-    plan: 'Free',
   },
 ]
 
@@ -36,8 +26,8 @@ const user: {
   email: string
   avatar: string
 } = {
-  name: 'Dian Pratama',
-  email: 'dianpratama2@gmail.com',
+  name: 'Superadmin',
+  email: 'superadmin@gmail.com',
   avatar: '/avatars/avatartion.png',
 }
 

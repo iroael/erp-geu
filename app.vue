@@ -26,16 +26,16 @@ useHead({
   },
 })
 
-const title = 'Nuxt Shadcn UI - Dashboard Template'
-const description = 'This dashboard, built with Nuxt, Shadcn UI, and UnoCSS. It includes a dark mode toggle and is optimized for performance and data efficiency.'
+const title = 'ERP Green Energi Utama'
+const description = 'Aplikasi ERP untuk Green Energi Utama'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogUrl: 'https://dashboard.dianprata.com',
-  ogImage: 'https://nuxt-shadcn-dashboard.vercel.app/social-card.png',
+  ogUrl: 'https://erp-local.com',
+  ogImage: 'https://greenenergiutama.co.id/wp-content/uploads/elementor/thumbs/GEU-LOGO-qbpep8ubmrecn1be23b5gyjjskvfjeis8yk0z4uznk.png',
   twitterTitle: title,
   twitterDescription: description,
   twitterImage: 'https://nuxt-shadcn-dashboard.vercel.app/social-card.png',

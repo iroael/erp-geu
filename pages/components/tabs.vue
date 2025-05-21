@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <div class="flex flex-col gap-4">
     <div class="grid gap-2">
@@ -40,8 +37,9 @@
           <CardTitle>Basic</CardTitle>
         </CardHeader>
         <CardContent>
-          <div class="min-h-100px w-full flex items-center justify-center gap-4 md:min-h-200px">
-            <Tabs default-value="account" class="w-[400px]">
+          <div class="min-h-100px w-full flex flex-col gap-4 md:min-h-200px">
+            <!-- Hilangkan fixed width -->
+            <Tabs default-value="account" class="w-full">
               <TabsList class="grid grid-cols-2 w-full">
                 <TabsTrigger value="account">
                   Account
@@ -50,8 +48,8 @@
                   Password
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="account">
-                <Card>
+              <TabsContent value="account" class="w-full">
+                <Card class="w-full">
                   <CardHeader>
                     <CardTitle>Account</CardTitle>
                     <CardDescription>
@@ -73,8 +71,8 @@
                   </CardFooter>
                 </Card>
               </TabsContent>
-              <TabsContent value="password">
-                <Card>
+              <TabsContent value="password" class="w-full">
+                <Card class="w-full">
                   <CardHeader>
                     <CardTitle>Password</CardTitle>
                     <CardDescription>
@@ -103,7 +101,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

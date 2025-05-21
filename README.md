@@ -1,17 +1,6 @@
-![nuxt-shadcn-dashboard-social-card](https://nuxt-shadcn-dashboard.vercel.app/social-card.png)
-
-# Nuxt Shadcn UnoCSS - Dashboard
-
-[![built with nuxt][nuxt-src]][nuxt-href]
-
-- [Live demo](https://nuxt-shadcn-dashboard.vercel.app)
-- [Component Documentation](https://shadcn-vue.com/docs/introduction)
-
 ## Quick Start
 
 ```bash [Terminal]
-npx degit dianprata/nuxt-shadcn-dashboard my-dashboard-app
-cd my-dashboard-app
 pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 ```
 

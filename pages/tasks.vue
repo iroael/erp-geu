@@ -9,7 +9,7 @@ import tasks from '@/components/tasks/data/tasks.json'
     <div class="flex flex-wrap items-end justify-between gap-2">
       <div>
         <h2 class="text-2xl font-bold tracking-tight">
-          Tasks
+          Tasks 123
         </h2>
         <p class="text-muted-foreground">
           Here&apos;s a list of your tasks for this month!
