@@ -66,6 +66,81 @@ export const navMenu: NavMenu[] = [
       },
     ],
   },
+  {
+    heading: 'Employee',
+    items: [
+      {
+        title: 'Karywawan',
+        icon: 'i-lucide-users',
+        link: '/settings/users',
+      },
+    ],
+  },
+  {
+    heading: 'Master Data',
+    items: [
+      {
+        title: 'Branch',
+        icon: 'i-lucide-map-pin',
+        link: '/branch',
+      },
+      {
+        title: 'Area Kerja',
+        icon: 'i-lucide-layout-grid',
+        link: '/area-kerja',
+      },
+      {
+        title: 'Jabatan',
+        icon: 'i-lucide-badge-check',
+        link: '/jabatan',
+      },
+      {
+        title: 'Gudang',
+        icon: 'i-lucide-warehouse',
+        link: '/gudang',
+      },
+      {
+        title: 'Container',
+        icon: 'i-lucide-package',
+        link: '/container',
+      },
+    ],
+  },
+  {
+    heading: 'Settings',
+    items: [
+      {
+        title: 'Account',
+        icon: 'i-lucide-circle',
+        link: '/settings/account',
+      },
+      {
+        title: 'Role',
+        icon: 'i-lucide-user-cog',
+        link: '/settings/role',
+      },
+      {
+        title: 'Permission',
+        icon: 'i-lucide-key',
+        link: '/settings/permission',
+      },
+      {
+        title: 'Role Permission',
+        icon: 'i-lucide-shield-check',
+        link: '/settings/role-permission',
+      },
+      {
+        title: 'Users',
+        icon: 'i-lucide-users',
+        link: '/settings/users',
+      },
+      {
+        title: 'Workflow',
+        icon: 'i-lucide-workflow',
+        link: '/settings/workflow',
+      },
+    ],
+  }
 ]
 
 export const navMenuBottom: NavMenuItems = [

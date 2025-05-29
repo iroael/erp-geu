@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { Warehouse } from '~/types/schema'
-import { columns as rawColumns } from '@/components/gudang/components/columns'
-import DataTable from '@/components/gudang/components/DataTable.vue'
-import GudangFormModal from '@/components/gudang/components/GudangFormModal.vue'
-import { useGudang } from '@/composables/useGudang'
+import type { Role } from '~/types/schema'
+import { columns as rawColumns } from '@/components/role/components/columns'
+import DataTable from '@/components/role/components/DataTable.vue'
+import RoleFormModal from '@/components/role/components/RoleFormModal.vue'
+import { useRole } from '@/composables/useRole'
 import { ref, watch } from 'vue'
 
-const { fetchGudangesDatatables } = useGudang()
+const { fetchRolesDatatables } = useRole()
 
-const data = ref<Warehouse[]>([])
+const data = ref<Role[]>([])
 const totalRows = ref(0)
 const error = ref<string | null>(null)
 
@@ -16,7 +16,7 @@ const pageIndex = ref(0)
 const pageSize = ref(10)
 
 const showEditModal = ref(false)
-const selectedGudang = ref<Warehouse | null>(null)
+const selectedRole = ref<Role | null>(null)
 const isLoading = ref(true)
 
 const fetchData = async () => {
@@ -24,7 +24,7 @@ const fetchData = async () => {
     isLoading.value = true
     error.value = null
 
-    const res = await fetchGudangesDatatables({
+    const res = await fetchRolesDatatables({
       start: pageIndex.value * pageSize.value,
       length: pageSize.value,
     })
@@ -33,16 +33,17 @@ const fetchData = async () => {
     totalRows.value = res.recordsTotal
   }
   catch (err: any) {
-    error.value = err.message || 'Failed to fetch jabatan'
+    error.value = err.message || 'Failed to fetch branches'
   }
   finally {
     isLoading.value = false
   }
 }
+
 watch([pageIndex, pageSize], fetchData, { immediate: true })
 
-const handleEdit = (gudang: Warehouse) => {
-  selectedGudang.value = gudang
+const handleEdit = (role: Role) => {
+  selectedRole.value = role
   showEditModal.value = true
 }
 
@@ -51,28 +52,22 @@ const handleEditSuccess = async () => {
   showEditModal.value = false
 }
 
-const columns = rawColumns({ onEdit: handleEdit })
+const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
 </script>
 
 <template>
   <div class="w-full flex flex-col items-stretch gap-4">
     <div class="flex flex-wrap items-end justify-between gap-2">
       <div>
-        <h2 class="text-2xl font-bold tracking-tight">
-          Gudang
-        </h2>
-        <p class="text-muted-foreground">
-          List of company gudang.
-        </p>
+        <h2 class="text-2xl font-bold tracking-tight">Role</h2>
+        <p class="text-muted-foreground">List of role.</p>
       </div>
     </div>
 
-    <div v-if="error" class="text-red-500">
-      {{ error }}
-    </div>
+    <div v-if="error" class="text-red-500">{{ error }}</div>
 
     <DataTable
-      v-if="!isLoading && data.length"
+      v-if="!isLoading"
       :data="data"
       :columns="columns"
       :total-rows="totalRows"
@@ -80,6 +75,7 @@ const columns = rawColumns({ onEdit: handleEdit })
       :page-size="pageSize"
       @update:page-index="pageIndex = $event"
       @update:page-size="pageSize = $event"
+      @refresh="fetchData"
     />
 
     <div v-else-if="isLoading" class="space-y-2">
@@ -88,11 +84,10 @@ const columns = rawColumns({ onEdit: handleEdit })
 
     <div v-else-if="!error" class="text-gray-500">Loading...</div>
 
-    <GudangFormModal
+    <RoleFormModal
       v-if="showEditModal"
-      :key="selectedGudang?.id"
       :open="showEditModal"
-      :gudang="selectedGudang"
+      :role="selectedRole"
       @update:open="showEditModal = $event"
       @submit="handleEditSuccess"
     />

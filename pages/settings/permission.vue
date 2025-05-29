@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { Warehouse } from '~/types/schema'
-import { columns as rawColumns } from '@/components/gudang/components/columns'
-import DataTable from '@/components/gudang/components/DataTable.vue'
-import GudangFormModal from '@/components/gudang/components/GudangFormModal.vue'
-import { useGudang } from '@/composables/useGudang'
+import type { Permission } from '~/types/schema'
+import { columns as rawColumns } from '@/components/permission/components/columns'
+import DataTable from '@/components/permission/components/DataTable.vue'
+import PermissionFormModal from '@/components/permission/components/PermissionFormModal.vue'
+import { usePermission } from '@/composables/usePermission'
 import { ref, watch } from 'vue'
 
-const { fetchGudangesDatatables } = useGudang()
+const { fetchPermissionDatatables } = usePermission()
 
-const data = ref<Warehouse[]>([])
+const data = ref<Permission[]>([])
 const totalRows = ref(0)
 const error = ref<string | null>(null)
 
@@ -16,63 +16,57 @@ const pageIndex = ref(0)
 const pageSize = ref(10)
 
 const showEditModal = ref(false)
-const selectedGudang = ref<Warehouse | null>(null)
-const isLoading = ref(true)
+const selectedPermission = ref<Permission | null>(null)
+const isLoading = ref(false)
 
 const fetchData = async () => {
   try {
     isLoading.value = true
     error.value = null
 
-    const res = await fetchGudangesDatatables({
+    const res = await fetchPermissionDatatables({
       start: pageIndex.value * pageSize.value,
       length: pageSize.value,
     })
 
     data.value = res.data
     totalRows.value = res.recordsTotal
-  }
-  catch (err: any) {
-    error.value = err.message || 'Failed to fetch jabatan'
-  }
-  finally {
+  } catch (err: any) {
+    error.value = err.message || 'Failed to fetch permissions'
+  } finally {
     isLoading.value = false
   }
 }
+
 watch([pageIndex, pageSize], fetchData, { immediate: true })
 
-const handleEdit = (gudang: Warehouse) => {
-  selectedGudang.value = gudang
+const handleEdit = (permission: Permission) => {
+  selectedPermission.value = permission
   showEditModal.value = true
 }
 
 const handleEditSuccess = async () => {
-  await fetchData()
   showEditModal.value = false
+  selectedPermission.value = null
+  await fetchData()
 }
 
-const columns = rawColumns({ onEdit: handleEdit })
+const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData})
 </script>
 
 <template>
   <div class="w-full flex flex-col items-stretch gap-4">
     <div class="flex flex-wrap items-end justify-between gap-2">
       <div>
-        <h2 class="text-2xl font-bold tracking-tight">
-          Gudang
-        </h2>
-        <p class="text-muted-foreground">
-          List of company gudang.
-        </p>
+        <h2 class="text-2xl font-bold tracking-tight">Permission</h2>
+        <p class="text-muted-foreground">List of permissions.</p>
       </div>
     </div>
 
-    <div v-if="error" class="text-red-500">
-      {{ error }}
-    </div>
+    <div v-if="error" class="text-red-500">{{ error }}</div>
 
     <DataTable
-      v-if="!isLoading && data.length"
+      v-if="!isLoading"
       :data="data"
       :columns="columns"
       :total-rows="totalRows"
@@ -80,19 +74,19 @@ const columns = rawColumns({ onEdit: handleEdit })
       :page-size="pageSize"
       @update:page-index="pageIndex = $event"
       @update:page-size="pageSize = $event"
+      @refresh="fetchData"
     />
 
     <div v-else-if="isLoading" class="space-y-2">
       <div v-for="n in 10" :key="n" class="h-10 bg-muted animate-pulse rounded" />
     </div>
 
-    <div v-else-if="!error" class="text-gray-500">Loading...</div>
+    <div v-else-if="!error" class="text-gray-500">No permissions found.</div>
 
-    <GudangFormModal
+    <PermissionFormModal
       v-if="showEditModal"
-      :key="selectedGudang?.id"
       :open="showEditModal"
-      :gudang="selectedGudang"
+      :permission="selectedPermission"
       @update:open="showEditModal = $event"
       @submit="handleEditSuccess"
     />
