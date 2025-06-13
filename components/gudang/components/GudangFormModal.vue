@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<GudangFormModalProps>(), {
 const emit = defineEmits(['update:open', 'submit'])
 
 const { toast } = useToast()
-const { createOrUpdateJGudang } = useGudang()
+const { createOrUpdateGudang } = useGudang()
 
 const form = reactive({
   name: '',
@@ -79,15 +79,11 @@ const handleSubmit = async () => {
 
   try {
     const isEdit = !!props.gudang?.id
-
-    const response = await $fetch(`/api/v1/gudang${isEdit ? `/${props.gudang.id}` : ''}`, {
-      method: isEdit ? 'PUT' : 'POST',
-      body: form,
-      headers: {
-        Authorization: useRuntimeConfig().public.API_TOKEN,
-      },
+    console.log('Submitting Gudang:', form)
+    const response = await createOrUpdateGudang({
+      id: props.gudang?.id, // hanya jika edit
+      ...form,
     })
-
     emit('submit', response) // biar parent reload
     emit('update:open', false)
     resetForm()
@@ -126,15 +122,15 @@ const handleOpenChange = (val: boolean) => {
   <Dialog :open="open" @update:open="handleOpenChange">
     <DialogContent class="sm:max-w-[500px]">
       <DialogHeader>
-        <DialogTitle>{{ props.jabatan?.id ? 'Edit Jabatan' : 'Add New Jabatan' }}</DialogTitle>
+        <DialogTitle>{{ props.gudang?.id ? 'Edit Gudang' : 'Add New Gudang' }}</DialogTitle>
         <DialogDescription>
-          {{ props.jabatan?.id ? 'Update jabatan information.' : 'Fill in the details to create a new jabatan.' }}
+          {{ props.gudang?.id ? 'Update jabatan information.' : 'Fill in the details to create a new gudang.' }}
         </DialogDescription>
       </DialogHeader>
 
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div class="space-y-2">
-          <Label for="name">Jabatan Name</Label>
+          <Label for="name">Gudang Name</Label>
           <Input
             id="name"
             v-model="form.name"

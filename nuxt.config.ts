@@ -20,6 +20,7 @@ export default defineNuxtConfig({
 
   css: [
     '@unocss/reset/tailwind.css',
+    'drawflow/dist/drawflow.min.css',
   ],
 
   colorMode: {

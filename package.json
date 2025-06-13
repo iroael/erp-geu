@@ -44,15 +44,22 @@
     "format": "eslint --fix ."
   },
   "dependencies": {
+    "@braks/vue-flow": "^0.4.41",
     "@iconify-json/lucide": "^1.2.30",
     "@iconify-json/radix-icons": "^1.2.2",
     "@internationalized/date": "^3.7.0",
     "@number-flow/vue": "^0.4.5",
     "@tanstack/vue-table": "^8.21.2",
+    "@types/uuid": "^10.0.0",
     "@unovis/ts": "^1.5.1",
     "@unovis/vue": "^1.5.1",
+    "@vue-flow/core": "^1.44.0",
+    "@vue-flow/minimap": "^1.5.3",
+    "@vue-flow/node-resizer": "^1.4.0",
+    "drawflow": "^0.0.60",
     "embla-carousel": "^8.5.2",
-    "embla-carousel-vue": "^8.5.2"
+    "embla-carousel-vue": "^8.5.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.10.1",
@@ -60,6 +67,7 @@
     "@nuxt/icon": "^1.11.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@pinia/nuxt": "^0.5.1",
+    "@types/drawflow": "^0.0.12",
     "@unocss/eslint-plugin": "^66.0.0",
     "@unocss/nuxt": "^66.0.0",
     "@vee-validate/zod": "^4.15.0",

@@ -1,6 +1,6 @@
 // composables/useUsers.ts
 import type { CreateUser } from '~/types/schema'
-import { useUserStore } from '~/store/users'
+import { useUserStore } from '@/stores/users'
 
 export const useUsers = () => {
   const store = useUserStore()

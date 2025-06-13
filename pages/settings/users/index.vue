@@ -4,33 +4,27 @@ import { columns as rawColumns } from '@/components/users/components/columns'
 import DataTable from '@/components/users/components/DataTable.vue'
 import { useUsers } from '@/composables/useUsers'
 import NumberFlow from '@number-flow/vue'
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { Activity, CreditCard, DollarSign, Users } from 'lucide-vue-next'
 
+// ✅ Jadikan CSR
+definePageMeta({
+  ssr: false
+})
+
+// Dummy data untuk kartu statistik
 const dataCard = ref({
-  totalRevenue: 0,
-  totalRevenueDesc: 0,
-  subscriptions: 0,
-  subscriptionsDesc: 0,
-  sales: 0,
-  salesDesc: 0,
-  activeNow: 0,
-  activeNowDesc: 0,
+  totalRevenue: 45231.89,
+  totalRevenueDesc: 0.201,
+  subscriptions: 2350,
+  subscriptionsDesc: 1.805,
+  sales: 12234,
+  salesDesc: 0.45,
+  activeNow: 573,
+  activeNowDesc: 201,
 })
 
-onMounted(() => {
-  dataCard.value = {
-    totalRevenue: 45231.89,
-    totalRevenueDesc: 20.1 / 100,
-    subscriptions: 2350,
-    subscriptionsDesc: 180.5 / 100,
-    sales: 12234,
-    salesDesc: 45 / 100,
-    activeNow: 573,
-    activeNowDesc: 201,
-  }
-})
-
+// State
 const {
   fetch,
   users,
@@ -41,10 +35,10 @@ const {
 
 const pageIndex = ref(0)
 const pageSize = ref(10)
-
 const showEditModal = ref(false)
 const selectedUser = ref<User | null>(null)
 
+// ✅ Panggil fetchData saat pertama kali halaman dimuat
 const fetchData = async () => {
   try {
     await fetch(pageIndex.value * pageSize.value, pageSize.value)
@@ -52,8 +46,10 @@ const fetchData = async () => {
     console.error('Error fetching users:', err)
   }
 }
+onMounted(fetchData)
 
-watch([pageIndex, pageSize], fetchData, { immediate: true })
+// ✅ Refetch data saat pageIndex atau pageSize berubah
+watch([pageIndex, pageSize], fetchData)
 
 const handleEdit = (user: User) => {
   selectedUser.value = user
@@ -69,6 +65,7 @@ const handleEditSuccess = async () => {
 const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
 </script>
 
+
 <template>
   <div class="w-full flex flex-col gap-4">
     <div class="flex flex-wrap items-center justify-between gap-2">
@@ -82,6 +79,7 @@ const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
     <main class="flex flex-1 flex-col gap-4 md:gap-8">
       <!-- Metrics Cards -->
       <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-2 md:gap-8">
+       
         <Card>
           <CardHeader class="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle class="text-sm font-medium">Total Revenue</CardTitle>
@@ -141,6 +139,8 @@ const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
             </p>
           </CardContent>
         </Card>
+
+        <!-- Repeat for Subscriptions, Sales, ActiveNow... -->
       </div>
 
       <!-- Users Table -->
@@ -151,6 +151,16 @@ const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
           </CardHeader>
           <CardContent class="pl-2">
             <div v-if="storeError" class="text-red-500">{{ storeError }}</div>
+
+            <div v-if="storeLoading" class="space-y-2">
+            <div v-for="i in 10" :key="i" class="animate-pulse flex items-center space-x-4 rounded border p-4 shadow-sm bg-white">
+              <div class="h-10 w-10 bg-muted rounded-full"></div>
+              <div class="flex-1 space-y-2 py-1">
+                <div class="h-4 bg-muted rounded w-3/4"></div>
+                <div class="h-4 bg-muted rounded w-1/2"></div>
+              </div>
+            </div>
+          </div>
 
             <DataTable
               v-if="!storeLoading && users.length"
@@ -163,12 +173,6 @@ const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
               @update:page-size="pageSize = $event"
               @refresh="fetchData"
             />
-
-            <div v-else-if="storeLoading" class="space-y-2">
-              <div v-for="n in 10" :key="n" class="h-10 bg-muted animate-pulse rounded" />
-            </div>
-
-            <div v-else class="text-gray-500">No users found.</div>
 
           </CardContent>
         </Card>

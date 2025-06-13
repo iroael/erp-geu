@@ -139,6 +139,11 @@ export const navMenu: NavMenu[] = [
         icon: 'i-lucide-workflow',
         link: '/settings/workflow',
       },
+      // {
+      //   title: 'Workflow New',
+      //   icon: 'i-lucide-workflow',
+      //   link: '/settings/workflow/new',
+      // },
     ],
   }
 ]

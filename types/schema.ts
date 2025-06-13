@@ -175,3 +175,22 @@ export const createUserSchema = z.object({
   is_active: z.boolean(),
 })
 export type CreateUser = z.infer<typeof createUserSchema>
+
+export const workflowSchema = z.object({
+  id: z.string().uuid(),
+  workflow_type: z.string(),
+  workflow_name: z.string(),
+  revision: z.string(),
+  is_active: z.boolean(),
+  created_at: z.string(), // ISO timestamp string
+  updated_at: z.string(),
+})
+
+export const workflowsResponseSchema = z.object({
+  recordsTotal: z.number(),
+  recordsFiltered: z.number(),
+  data: z.array(workflowSchema),
+})
+
+export type Workflow = z.infer<typeof workflowSchema>
+export type WorkflowsResponse = z.infer<typeof workflowsResponseSchema>

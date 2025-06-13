@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { Table } from '@tanstack/vue-table' // misal pakai tanstack table, sesuaikan jika beda
-
 interface Props {
-  table: Table<any>
+  table: any
   totalRows: number
 }
 
@@ -15,11 +12,7 @@ const pageIndex = computed(() => props.table.getState().pagination.pageIndex)
 const pageSize = computed(() => props.table.getState().pagination.pageSize || 10)
 const pageCount = computed(() => Math.max(1, props.table.getPageCount()))
 
-const startRow = computed(() => {
-  if (props.totalRows === 0) return 0
-  return pageIndex.value * pageSize.value + 1
-})
-
+const startRow = computed(() => pageIndex.value * pageSize.value + 1)
 const endRow = computed(() => {
   const end = (pageIndex.value + 1) * pageSize.value
   return end > props.totalRows ? props.totalRows : end
@@ -31,11 +24,8 @@ function handlePageChange(newPageIndex: number) {
   }
 }
 
-function handlePageSizeChange(newPageSize: string) {
-  const size = Number(newPageSize)
-  if (!isNaN(size) && size > 0) {
-    props.table.setPageSize(size)
-  }
+function handlePageSizeChange(newPageSize: number) {
+  props.table.setPageSize(Number(newPageSize))
 }
 </script>
 
@@ -49,10 +39,7 @@ function handlePageSizeChange(newPageSize: string) {
       <!-- Page Size Selector -->
       <div class="flex items-center space-x-2">
         <p class="text-sm font-medium">Rows per page</p>
-        <Select
-          :model-value="String(pageSize)"
-          @update:model-value="handlePageSizeChange"
-        >
+        <Select :model-value="String(pageSize)" @update:model-value="handlePageSizeChange">
           <SelectTrigger class="h-8 w-[70px]">
             <SelectValue :placeholder="String(pageSize)" />
           </SelectTrigger>
@@ -66,20 +53,10 @@ function handlePageSizeChange(newPageSize: string) {
 
       <!-- Numbered Pagination -->
       <div class="flex items-center space-x-1">
-        <Button
-          variant="outline"
-          class="h-8 w-8 p-0"
-          :disabled="pageIndex === 0"
-          @click="handlePageChange(0)"
-        >
+        <Button variant="outline" class="h-8 w-8 p-0" :disabled="pageIndex === 0" @click="handlePageChange(0)">
           <Icon name="i-radix-icons-double-arrow-left" class="h-4 w-4" />
         </Button>
-        <Button
-          variant="outline"
-          class="h-8 w-8 p-0"
-          :disabled="pageIndex === 0"
-          @click="handlePageChange(pageIndex - 1)"
-        >
+        <Button variant="outline" class="h-8 w-8 p-0" :disabled="pageIndex === 0" @click="handlePageChange(pageIndex - 1)">
           <Icon name="i-radix-icons-chevron-left" class="h-4 w-4" />
         </Button>
 
@@ -91,27 +68,17 @@ function handlePageSizeChange(newPageSize: string) {
           class="h-8 min-w-[32px] px-2 text-sm"
           :class="{
             'bg-primary text-primary-foreground': i - 1 === pageIndex,
-            'text-muted-foreground': i - 1 !== pageIndex
+            'text-muted-foreground': i - 1 !== pageIndex,
           }"
           @click="handlePageChange(i - 1)"
         >
           {{ i }}
         </Button>
 
-        <Button
-          variant="outline"
-          class="h-8 w-8 p-0"
-          :disabled="pageIndex + 1 >= pageCount"
-          @click="handlePageChange(pageIndex + 1)"
-        >
+        <Button variant="outline" class="h-8 w-8 p-0" :disabled="pageIndex + 1 >= pageCount" @click="handlePageChange(pageIndex + 1)">
           <Icon name="i-radix-icons-chevron-right" class="h-4 w-4" />
         </Button>
-        <Button
-          variant="outline"
-          class="h-8 w-8 p-0"
-          :disabled="pageIndex + 1 >= pageCount"
-          @click="handlePageChange(pageCount - 1)"
-        >
+        <Button variant="outline" class="h-8 w-8 p-0" :disabled="pageIndex + 1 >= pageCount" @click="handlePageChange(pageCount - 1)">
           <Icon name="i-radix-icons-double-arrow-right" class="h-4 w-4" />
         </Button>
       </div>

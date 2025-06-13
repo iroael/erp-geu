@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Role } from '~/types/schema'
+import type { Role } from '@/types/schema'
+import { ref, watch } from 'vue'
 import { columns as rawColumns } from '@/components/role/components/columns'
 import DataTable from '@/components/role/components/DataTable.vue'
 import RoleFormModal from '@/components/role/components/RoleFormModal.vue'
 import { useRole } from '@/composables/useRole'
-import { ref, watch } from 'vue'
 
 const { fetchRolesDatatables } = useRole()
 
@@ -59,12 +59,15 @@ const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
   <div class="w-full flex flex-col items-stretch gap-4">
     <div class="flex flex-wrap items-end justify-between gap-2">
       <div>
-        <h2 class="text-2xl font-bold tracking-tight">Role</h2>
-        <p class="text-muted-foreground">List of role.</p>
+        <h2 class="text-2xl font-bold tracking-tight">
+          Role
+        </h2>
+        <p class="text-muted-foreground">
+          List of role.
+        </p>
       </div>
     </div>
 
-    <div v-if="error" class="text-red-500">{{ error }}</div>
 
     <DataTable
       v-if="!isLoading"
@@ -82,7 +85,9 @@ const columns = rawColumns({ onEdit: handleEdit, onDeleteSuccess: fetchData })
       <div v-for="n in 10" :key="n" class="h-10 bg-muted animate-pulse rounded" />
     </div>
 
-    <div v-else-if="!error" class="text-gray-500">Loading...</div>
+    <div v-else-if="!error" class="text-gray-500">
+      Loading...
+    </div>
 
     <RoleFormModal
       v-if="showEditModal"

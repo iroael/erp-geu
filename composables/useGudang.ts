@@ -45,12 +45,12 @@ export const useGudang = () => {
     }
   }
 
-  const createOrUpdateGudang = async (Gudang: Partial<Gudang>): Promise<Gudang> => {
+  const createOrUpdateGudang = async (Gudang: Partial<Warehouse>): Promise<Warehouse> => {
     const isEdit = !!Gudang.id
     const url = `${config.public.API_BASE_URL}/gudang${isEdit ? `/${Gudang.id}` : ''}`
     const method = isEdit ? 'PUT' : 'POST'
 
-    const res = await $fetch<Gudang>(url, {
+    const res = await $fetch<Warehouse>(url, {
       method,
       body: Gudang,
       headers: {
